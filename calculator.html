@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="calculator">
+        <h1 class="title">Calculator</h1>
+        <div class="one-nine">
+            <div class="input-div">
+                <p class="input"></p>
+            </div>
+            <button class="num-btn clear">C</button>
+            
+            
+            <button class="num-btn equal">=</button>
+            <button class="num-btn decimal">.</button>
+
+            <button class="num-btn plus">+</button>
+            <button class="num-btn seven">7</button>
+            <button class="num-btn eight">8</button>
+            <button class="num-btn nine">9</button>
+
+            <button class="num-btn minus">-</button>
+
+            <button class="num-btn four">4</button>
+            <button class="num-btn five">5</button>
+            <button class="num-btn six">6</button>
+            <button class="num-btn divide">/</button>
+
+            <button class="num-btn one">1</button>
+            <button class="num-btn two">2</button>
+            <button class="num-btn three">3</button>
+            <button class="num-btn multiply">*</button>
+        </div>
+
+        <div class="result">
+            <h2>Result = </h2>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            var expression = '';
+
+            $('.clear').click(function(){
+                $('.input').text('');
+                expression = '';
+                result = '';
+                $('h2').text("Result = " + result);
+            });
+
+            $('.equal').click(function(){
+                expression = $('.input').text();
+                try {
+                    var result = eval(expression);
+                    $('h2').text("Result = " + result);
+                } catch (error) {
+                    alert('Invalid expression');
+                }
+            });
+
+            $('.multiply, .divide, .minus, .plus').click(function(){
+                expression += $(this).text();
+                $('.input').text(expression);
+            });
+
+            $('.one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .decimal').click(function(){
+                expression += $(this).text();
+                $('.input').text(expression);
+            });
+
+        });
+    </script>
+</body>
+</html>
+<style>
+body{
+    background-color: grey;
+    color:white;
+  }
+  
+  .one-nine{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  
+  .calculator {
+    max-inline-size: 30rem;
+    border-radius: 20px;
+    overflow: hidden; 
+    box-shadow: 0px 3px 6px 0px black, 0px 2px 4px 0px rgba(0, 0, 0, 0.12); 
+  }
+  
+  .num-btn{
+    padding:3rem;
+    border:none;
+    font-size: larger;
+    border: 1px solid gray;
+    background-color: yellow;
+    color:black;
+  }
+  
+  .num-btn:hover{
+    background-color:rgba(0, 255, 238, 0.363);
+    color: white;
+  }
+  
+  .input-div{
+    grid-column: span 4;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    border: 2px solid rgb(128, 128, 128);
+    font-size: larger;
+    height: 5rem;
+  }
+  
+  .input{
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  
+  
+  @media only screen and (max-width:800px){
+  
+  
+  .num-btn{
+    padding:2rem;
+    border:none;
+    font-size: medium;
+    border: 1px solid gray;
+    background-color: yellow;
+    color:black;
+    .calculator {
+  margin-left: auto; 
+  margin-right: auto;
+}
+  }
+  }
+</style>ff
